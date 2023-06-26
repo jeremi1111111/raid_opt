@@ -18,18 +18,24 @@
     <ClCompile Include="main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="import_cards.cpp">
+    <ClCompile Include="card_info.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="card_info.cpp">
+    <ClCompile Include="import_data.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="player_card_info.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="import_cards.h">
+    <ClInclude Include="card_info.h">
       <Filter>Pliki zasobów</Filter>
     </ClInclude>
-    <ClInclude Include="card_info.h">
+    <ClInclude Include="import_data.h">
+      <Filter>Pliki zasobów</Filter>
+    </ClInclude>
+    <ClInclude Include="player_card_info.h">
       <Filter>Pliki zasobów</Filter>
     </ClInclude>
   </ItemGroup>

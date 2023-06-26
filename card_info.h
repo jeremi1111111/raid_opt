@@ -19,16 +19,14 @@ public:
 		double cha,
 		double mch,
 		std::string bta,
-		std::vector<double> baa,
 		std::string btb,
-		std::vector<double> bab,
 		std::string btc,
-		double bac,
 		std::string btd,
-		double bad,
 		std::string bte,
+		std::vector<double> baa,
+		std::vector<double> bab,
+		double bac,
+		double bad,
 		double bae
 	);
 };
-
-extern std::vector<card_info*> cards;
