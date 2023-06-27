@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <map>
 
 class card_info
 {
@@ -30,3 +31,8 @@ public:
 		double bae
 	);
 };
+
+extern std::vector<card_info*> cards;
+extern std::vector<int> card_cost;
+extern std::vector<int> dust_cost;
+extern std::map<std::string, int> indexes;

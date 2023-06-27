@@ -128,14 +128,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="card_info.cpp" />
+    <ClCompile Include="deck.cpp" />
+    <ClCompile Include="formulas.cpp" />
     <ClCompile Include="import_data.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="part.cpp" />
     <ClCompile Include="player_card_info.cpp" />
+    <ClCompile Include="simulation.cpp" />
+    <ClCompile Include="titan.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card_info.h" />
+    <ClInclude Include="deck.h" />
     <ClInclude Include="import_data.h" />
+    <ClInclude Include="part.h" />
     <ClInclude Include="player_card_info.h" />
+    <ClInclude Include="simulation.h" />
+    <ClInclude Include="titan.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

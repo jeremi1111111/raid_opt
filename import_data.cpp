@@ -31,9 +31,9 @@ void import_cards(std::string filename)
 		std::string nam = line[1];
 		std::string cat = line[4];
 		int mst = std::stoi(line[8]);
-		double dur = std::stod(line[9]);
-		double cha = std::stod(line[10]);
-		double mch = std::stod(line[11]);
+		double dur = std::floor(std::stod(line[9]) * 100) / 100.;
+		double cha = std::floor(std::stod(line[10]) * 100) / 100.;
+		double mch = std::floor(std::stod(line[11]) * 100) / 100.;
 		std::string bta = line[136];
 		std::string btb = line[197];
 		std::string btc = line[258];
@@ -43,15 +43,16 @@ void import_cards(std::string filename)
 		std::vector<double> bab;
 		for (int i = 0; i < 60; i++)
 		{
-			baa.push_back(std::stod(line[i+137]));
-			bab.push_back(std::stod(line[i+198]));
+			baa.push_back(std::floor(std::stod(line[i+137]) * 100) / 100.);
+			bab.push_back(std::floor(std::stod(line[i+198]) * 100) / 100.);
 		}
-		double bac = std::stod(line[259]);
-		double bad = std::stod(line[261]);
-		double bae = std::stod(line[263]);
+		double bac = std::floor(std::stod(line[259]) * 100) / 100.;
+		double bad = std::floor(std::stod(line[261]) * 100) / 100.;
+		double bae = std::floor(std::stod(line[263]) * 100) / 100.;
 		card_info* card = new card_info(
 			nam, cat, mst, dur, cha, mch, bta, btb, btc, btd, bte, baa, bab, bac, bad, bae
 		);
+		indexes.emplace(std::make_pair(nam, (int)cards.size()));
 		cards.push_back(card);
 	}
 	for (int i = 0; i < 60; i++)
