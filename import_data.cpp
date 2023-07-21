@@ -29,6 +29,11 @@ void import_cards(std::string filename)
 	{
 		line = csv_to_vector(open_file_buffer);
 		std::string nam = line[1];
+		std::transform(nam.begin(), nam.end(), nam.begin(),
+			[](char c) {
+				if (c == ' ') return '_';
+				return (char)std::tolower(c);
+			});
 		std::string cat = line[4];
 		int mst = std::stoi(line[8]);
 		double dur = std::floor(std::stod(line[9]) * 100) / 100.;
@@ -41,7 +46,7 @@ void import_cards(std::string filename)
 		std::string bte = line[262];
 		std::vector<double> baa;
 		std::vector<double> bab;
-		for (int i = 0; i < 60; i++)
+		for (size_t i = 0; i < 60; i++)
 		{
 			baa.push_back(std::floor(std::stod(line[i+137]) * 100) / 100.);
 			bab.push_back(std::floor(std::stod(line[i+198]) * 100) / 100.);
@@ -76,9 +81,11 @@ void import_player(std::string filename)
 		std::getline(open_file, open_file_buffer);
 		if (open_file_buffer.find("},") != std::string::npos)
 			break;
-		int i1 = open_file_buffer.find('\"') + 1;
-		int i2 = open_file_buffer.find('\"', i1);
+		size_t i1 = open_file_buffer.find('\"') + 1;
+		size_t i2 = open_file_buffer.find('\"', i1);
 		std::string name = open_file_buffer.substr(i1, i2 - i1);
+		std::transform(name.begin(), name.end(), name.begin(),
+			[](char c) { return std::tolower(c); });
 		std::getline(open_file, open_file_buffer);
 		i1 = open_file_buffer.find(':') + 2;
 		i2 = open_file_buffer.find(',', i1);
@@ -87,11 +94,61 @@ void import_player(std::string filename)
 		i1 = open_file_buffer.find(':') + 2;
 		int c_amount = std::stoi(open_file_buffer.substr(i1));
 		std::getline(open_file, open_file_buffer);
-		player_card_info* card = new player_card_info(name, level, c_amount);
+		player_card_info* card = new player_card_info(indexes[name], level, c_amount);
 		player_info.push_back(card);
 	}
 	open_file.close();
+	std::sort(player_info.begin(), player_info.end(),
+		[](player_card_info* a, player_card_info* b) { return a->index < b->index; });
 }
+
+//void set_calc_params()
+//{
+//	//																		flags:	rf,	rfc,df,	dfb,dfc,dfm,dfa,sf,	sfa,sfc
+//	//bursts
+//	calc_params.push_back(new calculation_parameters(indexes["moon beam"],			1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["fragmentize"],		1,	0,	1,	1,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["skull bash"],			1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["razor wind"],			1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["whip of lightning"],	1,	1,	1,	0,	0,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["clanship barrage"],	1,	0,	1,	0,	0,	0,	1,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["purifying blast"],	1,	0,	1,	0,	0,	0,	1,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["psychic shackles"],	1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["flak shot"],			1,	0,	1,	0,	0,	1,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["cosmic haymaker"],	1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["chain of vengeance"],	1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["mirror force"],		1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["celestial static"],	1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	//afflictions
+//	calc_params.push_back(new calculation_parameters(indexes["blazing inferno"],	1,	1,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["acid drench"],		1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["decaying strike"],	1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["fusion bomb"],		1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["grim shadow"],		1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["thriving plague"],	1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["radioactivity"],		1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["ravenous swarm"],		1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["ruinous rain"],		1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["corrosive bubbles"],	1,	0,	1,	0,	1,	0,	0,	0,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["maelstrom"],			1,	0,	1,	0,	1,	0,	0,	1,	0,	0));
+//	//supports
+//	calc_params.push_back(new calculation_parameters(indexes["crushing instinct"],	0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["insanity void"],		0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["rancid gas"],			0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["inspiring force"],	0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["soul fire"],			0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["victory march"],		0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["prismatic rift"],		0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["ancestral favor"],	0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["grasping vines"],		0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["totem of power"],		0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["team tactics"],		0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["skeletal smash"],		0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	calc_params.push_back(new calculation_parameters(indexes["astral echo"],		0,	0,	0,	0,	0,	0,	0,	1,	0,	0));
+//	std::sort(player_info.begin(), player_info.end(),
+//		[](player_card_info* a, player_card_info* b) { return a->index < b->index; });
+//}
 
 // ideas:
 // save cards and player_info as std::map
+// change indexes from map to enum (is it even possible?)

@@ -364,3 +364,6 @@ FodyWeavers.xsd
 /RaidSkillInfo.csv
 /RaidSkillInfo.xlsx
 /export_sample_26_06.txt
+*.csv
+*.xlsx
+/raid_seed_20230702.json

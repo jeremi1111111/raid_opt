@@ -2,16 +2,27 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <random>
 
 class card_info
 {
 public:
-	std::string name, category;
+	std::string name;
+	std::string category;
 	int max_stacks;
-	double duration, chance, max_chance;
-	std::string bonus_type_a, bonus_type_b, bonus_type_c, bonus_type_d, bonus_type_e;
-	std::vector<double> bonus_amount_a, bonus_amount_b;
-	double bonus_amount_c, bonus_amount_d, bonus_amount_e;
+	double duration;
+	double chance;
+	double max_chance;
+	std::string bonus_type_a;
+	std::string bonus_type_b;
+	std::string bonus_type_c;
+	std::string bonus_type_d;
+	std::string bonus_type_e;
+	std::vector<double> bonus_amount_a;
+	std::vector<double> bonus_amount_b;
+	double bonus_amount_c;
+	double bonus_amount_d;
+	double bonus_amount_e;
 	card_info(
 		std::string nam,
 		std::string cat,
@@ -36,3 +47,7 @@ extern std::vector<card_info*> cards;
 extern std::vector<int> card_cost;
 extern std::vector<int> dust_cost;
 extern std::map<std::string, int> indexes;
+
+extern std::random_device rd;
+extern std::mt19937 rng;
+extern std::uniform_real_distribution<double> dist;
