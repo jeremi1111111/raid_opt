@@ -94,7 +94,7 @@ void import_player(std::string filename)
 		i1 = open_file_buffer.find(':') + 2;
 		int c_amount = std::stoi(open_file_buffer.substr(i1));
 		std::getline(open_file, open_file_buffer);
-		player_card_info* card = new player_card_info(indexes[name], level, c_amount);
+		player_card_info* card = new player_card_info(name, level, c_amount);
 		player_info.push_back(card);
 	}
 	open_file.close();

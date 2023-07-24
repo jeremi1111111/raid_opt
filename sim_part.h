@@ -14,9 +14,7 @@ public:
 	double ap;
 	bool is_cursed;
 	int tap_count = 0;
-	sim_card* c1;
-	sim_card* c2;
-	sim_card* c3;
+	std::vector<sim_stack*> deck_stacks;
 	sim_part(sim_titan* parent, part_name name);
 	bool is_afflicted();
 	int count_bursts();

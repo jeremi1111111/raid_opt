@@ -6,6 +6,7 @@ sim_titan::sim_titan()
 		parts.push_back(new sim_part(this, static_cast<part_name>(i)));
 }
 
+// might change that, all afflictions store information about previously hit parts
 int sim_titan::count_afflicted()
 {
 	int counter = 0;
@@ -19,14 +20,6 @@ int sim_titan::count_total_bursts()
 	int counter = 0;
 	for (sim_part* part : parts)
 		counter += part->count_bursts();
-	return counter;
-}
-
-int sim_titan::count_all_taps()
-{
-	int counter = 0;
-	for (sim_part* part : parts)
-		counter += part->tap_count;
 	return counter;
 }
 

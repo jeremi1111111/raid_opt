@@ -10,6 +10,5 @@ public:
 	sim_titan();
 	int count_afflicted();
 	int count_total_bursts();
-	int count_all_taps();
 	sim_part* random_part(sim_part* skipped_part, bool body_only_flag);
 };
