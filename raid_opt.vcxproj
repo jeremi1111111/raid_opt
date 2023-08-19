@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="card_info.cpp" />
     <ClCompile Include="sim_deck.cpp" />
     <ClCompile Include="import_data.cpp" />
     <ClCompile Include="main.cpp" />
@@ -139,6 +138,7 @@
     <ClCompile Include="sim_titan.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="area_info.h" />
     <ClInclude Include="card_info.h" />
     <ClInclude Include="sim_deck.h" />
     <ClInclude Include="declarations.h" />
@@ -150,6 +150,7 @@
     <ClInclude Include="sim_card.h" />
     <ClInclude Include="sim_stack.h" />
     <ClInclude Include="sim_titan.h" />
+    <ClInclude Include="titan_info.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

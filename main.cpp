@@ -8,6 +8,8 @@ std::vector<int> card_cost;
 std::vector<int> dust_cost;
 std::map<std::string, int> indexes;
 std::vector<player_card_info*> player_info;
+std::vector<titan_info*> titans;
+std::vector<area_info*> areas;
 
 std::random_device rd;
 std::mt19937 rng(rd());
@@ -20,16 +22,20 @@ int main()
 	std::cout << indexes.size() << '\n';
 	import_player("export_sample_26_06.txt");
 	std::cout << player_info.size() << '\n';
-	sim_part* sp = new sim_part(nullptr, part_name::head);
-	sim_card* sc = new chain_of_vengeance(indexes["chain_of_vengeance"]);
-	std::cout << sc->calculate_dmg(sp);
+	import_titans("RaidEnemyInfo.csv");
+	std::cout << titans.size() << '\n';
+	import_areas("RaidAreaInfo.csv");
+	std::cout << areas.size() << '\n';
+	//sim_part* sp = new sim_part(nullptr, part_name::head);
+	//sim_card* sc = new chain_of_vengeance(indexes["chain_of_vengeance"]);
+	//std::cout << sc->calculate_dmg(sp);
 	//while (!sc->roll(sp))
 	//	std::cout << "reroll\n";
 	//sim_card* mb = new moon_beam(0);
 	//mb->calculate_dmg();
 	//for (card_info* ci : cards)
 	//	std::cout << ci->name << '\n';
-	//std::vector<deck*> decks = deck_order();
+	//std::vector<sim_deck*> decks = deck_order();
 	//std::cout << decks.size();
 	//player_card_info* c = nullptr;
 	//for (player_card_info* card : player_info)

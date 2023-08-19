@@ -8,17 +8,13 @@
 class sim_part
 {
 public:
-	sim_titan* parent;
+	sim_titan* titan;
 	part_name name;
-	double hp;
-	double ap;
-	bool is_cursed;
-	int tap_count = 0;
-	std::vector<sim_stack*> deck_stacks;
-	sim_part(sim_titan* parent, part_name name);
-	bool is_afflicted();
-	int count_bursts();
-	int count_afflicted_stacks();
+	//double hp;
+	//double ap;
+	//bool is_cursed;
+	//int tap_count;
+	//std::vector<int>* deck_stacks;
+	sim_part(sim_titan* titan, part_name name);
+	void remove_old_stacks(int tap);
 };
-
-// ideas
