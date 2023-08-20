@@ -1,5 +1,7 @@
 #pragma once
 
+enum class card_name;
+enum class card_category;
 enum class part_name;
 class card_info;
 class player_card_info;

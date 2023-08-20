@@ -27,6 +27,51 @@ void string_to_lower_underscores(std::string& str)
 		});
 }
 
+void create_indexes()
+{
+	names.insert(std::make_pair("moon_beam", card_name::moon_beam));
+	names.insert(std::make_pair("fragmentize", card_name::fragmentize));
+	names.insert(std::make_pair("skull_bash", card_name::skull_bash));
+	names.insert(std::make_pair("razor_wind", card_name::razor_wind));
+	names.insert(std::make_pair("whip_of_lightning", card_name::whip_of_lightning));
+	names.insert(std::make_pair("clanship_barrage", card_name::clanship_barrage));
+	names.insert(std::make_pair("purifying_blast", card_name::purifying_blast));
+	names.insert(std::make_pair("psychic_shackles", card_name::psychic_shackles));
+	names.insert(std::make_pair("flak_shot", card_name::flak_shot));
+	names.insert(std::make_pair("cosmic_haymaker", card_name::cosmic_haymaker));
+	names.insert(std::make_pair("chain_of_vengeance", card_name::chain_of_vengeance));
+	names.insert(std::make_pair("mirror_force", card_name::mirror_force));
+	names.insert(std::make_pair("celestial_static", card_name::celestial_static));
+	names.insert(std::make_pair("blazing_inferno", card_name::blazing_inferno));
+	names.insert(std::make_pair("acid_drench", card_name::acid_drench));
+	names.insert(std::make_pair("decaying_strike", card_name::decaying_strike));
+	names.insert(std::make_pair("fusion_bomb", card_name::fusion_bomb));
+	names.insert(std::make_pair("grim_shadow", card_name::grim_shadow));
+	names.insert(std::make_pair("thriving_plague", card_name::thriving_plague));
+	names.insert(std::make_pair("radioactivity", card_name::radioactivity));
+	names.insert(std::make_pair("ravenous_swarm", card_name::ravenous_swarm));
+	names.insert(std::make_pair("ruinous_rain", card_name::ruinous_rain));
+	names.insert(std::make_pair("corrosive_bubbles", card_name::corrosive_bubbles));
+	names.insert(std::make_pair("maelstrom", card_name::maelstrom));
+	names.insert(std::make_pair("crushing_instinct", card_name::crushing_instinct));
+	names.insert(std::make_pair("insanity_void", card_name::insanity_void));
+	names.insert(std::make_pair("rancid_gas", card_name::rancid_gas));
+	names.insert(std::make_pair("inspiring_force", card_name::inspiring_force));
+	names.insert(std::make_pair("soul_fire", card_name::soul_fire));
+	names.insert(std::make_pair("victory_march", card_name::victory_march));
+	names.insert(std::make_pair("prismatic_rift", card_name::prismatic_rift));
+	names.insert(std::make_pair("ancestral_favor", card_name::ancestral_favor));
+	names.insert(std::make_pair("grasping_vines", card_name::grasping_vines));
+	names.insert(std::make_pair("totem_of_power", card_name::totem_of_power));
+	names.insert(std::make_pair("team_tactics", card_name::team_tactics));
+	names.insert(std::make_pair("skeletal_smash", card_name::skeletal_smash));
+	names.insert(std::make_pair("astral_echo", card_name::astral_echo));
+
+	categories.insert(std::make_pair("burst", card_category::burst));
+	categories.insert(std::make_pair("affliction", card_category::affliction));
+	categories.insert(std::make_pair("support", card_category::support));
+}
+
 void import_cards(std::string filename)
 {
 	std::string open_file_buffer = "";
@@ -40,6 +85,7 @@ void import_cards(std::string filename)
 		std::string nam = line[1];
 		string_to_lower_underscores(nam);
 		std::string cat = line[4];
+		string_to_lower_underscores(cat);
 		int mst = std::stoi(line[8]);
 		double dur = std::floor(std::stod(line[9]) * 100) / 100.;
 		double cha = std::floor(std::stod(line[10]) * 100) / 100.;
@@ -60,17 +106,18 @@ void import_cards(std::string filename)
 		double bad = std::floor(std::stod(line[261]) * 100) / 100.;
 		double bae = std::floor(std::stod(line[263]) * 100) / 100.;
 		card_info* card = new card_info(
-			nam, cat, mst, dur, cha, mch, bta, btb, btc, btd, bte, baa, bab, bac, bad, bae
+			names.at(nam), categories.at(cat), mst, dur, cha, mch, bta, btb, btc, btd, bte, baa, bab, bac, bad, bae
 		);
-		indexes.emplace(std::make_pair(nam, (int)cards.size()));
 		cards.push_back(card);
 	}
+	open_file.close();
 	for (int i = 0; i < 60; i++)
 	{
 		card_cost.push_back(std::stoi(line[i + 16]));
 		dust_cost.push_back(std::stoi(line[i + 76]));
 	}
-	open_file.close();
+	std::sort(cards.begin(), cards.end(),
+		[](card_info* a, card_info* b) { return a->name < b->name; });
 }
 
 void import_player(std::string filename)
@@ -98,12 +145,12 @@ void import_player(std::string filename)
 		i1 = open_file_buffer.find(':') + 2;
 		int c_amount = std::stoi(open_file_buffer.substr(i1));
 		std::getline(open_file, open_file_buffer);
-		player_card_info* card = new player_card_info(name, level, c_amount);
+		player_card_info* card = new player_card_info(names.at(name), level, c_amount);
 		player_info.push_back(card);
 	}
 	open_file.close();
 	std::sort(player_info.begin(), player_info.end(),
-		[](player_card_info* a, player_card_info* b) { return a->index < b->index; });
+		[](player_card_info* a, player_card_info* b) { return a->name < b->name; });
 }
 
 void import_titans(std::string filename)
@@ -195,4 +242,4 @@ void import_areas(std::string filename)
 
 // ideas:
 // save cards and player_info as std::map
-// change indexes from map to enum (is it even possible?)
+// change names from map to enum (is it even possible?)

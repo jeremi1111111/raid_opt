@@ -3,7 +3,7 @@
 #include "declarations.h"
 #include "sim_titan.h"
 #include "sim_card.h"
-#include "enumerates.h"
+#include "enumerables.h"
 
 class sim_part
 {

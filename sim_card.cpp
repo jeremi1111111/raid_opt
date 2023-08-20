@@ -4,34 +4,33 @@
 // APPLY DAMAGES TO PARTS
 // increase stack counters
 
-sim_card::sim_card(int index/*, sim_deck* deck*/, int deck_index)
+sim_card* sim_card::sim_card_builder(card_name& name, sim_deck* deck, int deck_index)
 {
-	this->card = cards[index];
-	this->player_card = player_info[index];
-	//this->deck = deck;
-	this->deck_index = deck_index;
-	this->stack_counter = 0;
+	switch (name)
+	{
+	case card_name::moon_beam:
+		return new moon_beam(name, deck, deck_index);
+	default:
+		return nullptr;
+	}
 }
+
+sim_card::sim_card(const card_name& name, sim_deck* deck, int deck_index)
+	: name(name), deck(deck), deck_index(deck_index)
+{
+	int index = static_cast<int>(name);
+	card_info* ci = cards[index];
+	this->roll_chance = ci[index].chance;
+}
+
 
 bool sim_card::roll(double modifier)
 {
-	if (dist(rng) < (this->card->chance * modifier))
+	if (dist(rng) < (this->roll_chance * modifier))
 		return true;
 	return false;
 }
-
-sim_card* sim_card::sim_card_builder(player_card_info* card, int deck_index)
-{
-	//don't know which one is faster
-	//if (card->index == indexes["moon_beam"])
-	//std::string& name = cards[card->index]->name;
-	//if (name == "moon_beam")
-	//	return new moon_beam(deck_index, card->index);
-	//if (name == "fragmentize")
-	//	return new fragmentize(deck_index, card->index);
-	return nullptr;
-}
-
+/*
 void sim_card::add_stack(sim_part* titan_part, int tap_count)
 {
 	//if (!titan_part)
@@ -63,9 +62,18 @@ double sim_card::calculate_support(double modifier)
 {
 	return 1.0;
 }
+*/
+moon_beam::moon_beam(card_name& name, sim_deck* deck, int deck_index)
+	: sim_card(name, deck, deck_index) 
+{
+	int index = static_cast<int>(name);
+	card_info* ci = cards[index];
+	int level = player_info[index]->level;
+	this->category = card_category::burst;
+	this->base_dmg_mult = ci->bonus_amount_a[level];
+	this->torso_dmg_mult = ci->bonus_amount_c;
+}
 
-//moon_beam::moon_beam(int deck_index, int index) : burst(index, deck_index) {}
-//
 //double moon_beam::calculate_dmg(sim_part* titan_part, double modifier)
 //{
 //	double dmg = card->bonus_amount_a[player_card->level] * modifier;
@@ -73,8 +81,8 @@ double sim_card::calculate_support(double modifier)
 //		dmg *= card->bonus_amount_c;
 //	return dmg;
 //}
-//
-//fragmentize::fragmentize(int deck_index) : sim_card(indexes["fragmentize"], deck_index) {}
+
+//fragmentize::fragmentize(int deck_index) : sim_card(names["fragmentize"], deck_index) {}
 //
 //double fragmentize::calculate_dmg(sim_part* titan_part, double modifier)
 //{
@@ -88,7 +96,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//skull_bash::skull_bash(int deck_index) : sim_card(indexes["skull_bash"], deck_index) {}
+//skull_bash::skull_bash(int deck_index) : sim_card(names["skull_bash"], deck_index) {}
 //
 //double skull_bash::calculate_dmg(sim_part* titan_part, double modifier)
 //{
@@ -98,7 +106,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//razor_wind::razor_wind(int deck_index) : sim_card(indexes["razor_wind"], deck_index) {}
+//razor_wind::razor_wind(int deck_index) : sim_card(names["razor_wind"], deck_index) {}
 //
 //double razor_wind::calculate_dmg(sim_part* titan_part, double modifier)
 //{
@@ -108,7 +116,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//whip_of_lightning::whip_of_lightning(int deck_index) : sim_card(indexes["whip_of_lightning"], deck_index) {}
+//whip_of_lightning::whip_of_lightning(int deck_index) : sim_card(names["whip_of_lightning"], deck_index) {}
 //
 //sim_part* whip_of_lightning::roll(sim_part* titan_part, double modifier)
 //{
@@ -127,7 +135,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//clanship_barrage::clanship_barrage(int deck_index) : sim_card(indexes["clanship_barrage"], deck_index) {}
+//clanship_barrage::clanship_barrage(int deck_index) : sim_card(names["clanship_barrage"], deck_index) {}
 //
 //double clanship_barrage::calculate_dmg(sim_part* titan_part, double modifier)
 //{
@@ -139,7 +147,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//purifying_blast::purifying_blast(int deck_index) : sim_card(indexes["purifying_blast"], deck_index) {}
+//purifying_blast::purifying_blast(int deck_index) : sim_card(names["purifying_blast"], deck_index) {}
 //
 //double purifying_blast::calculate_dmg(sim_part* titan_part, double modifier)
 //{
@@ -150,7 +158,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//psychic_shackles::psychic_shackles(int deck_index) : sim_card(indexes["psychic_shackles"], deck_index) {}
+//psychic_shackles::psychic_shackles(int deck_index) : sim_card(names["psychic_shackles"], deck_index) {}
 //
 //double psychic_shackles::calculate_dmg(sim_part* titan_part, double modifier)
 //{
@@ -161,7 +169,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//flak_shot::flak_shot(int deck_index) : sim_card(indexes["flak_shot"], deck_index)
+//flak_shot::flak_shot(int deck_index) : sim_card(names["flak_shot"], deck_index)
 //{
 //	this->ricochet_flag = false;
 //}
@@ -182,7 +190,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//cosmic_haymaker::cosmic_haymaker(int deck_index) : sim_card(indexes["cosmic_haymaker"], deck_index)
+//cosmic_haymaker::cosmic_haymaker(int deck_index) : sim_card(names["cosmic_haymaker"], deck_index)
 //{
 //	tap_count = 0;
 //}
@@ -197,7 +205,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//chain_of_vengeance::chain_of_vengeance(int deck_index) : sim_card(indexes["chain_of_vengeance"], deck_index) {}
+//chain_of_vengeance::chain_of_vengeance(int deck_index) : sim_card(names["chain_of_vengeance"], deck_index) {}
 //
 //double chain_of_vengeance::calculate_dmg(sim_part* titan_part, double modifier)
 //{
@@ -218,7 +226,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//mirror_force::mirror_force(int deck_index) : sim_card(indexes["mirror_force"], deck_index)
+//mirror_force::mirror_force(int deck_index) : sim_card(names["mirror_force"], deck_index)
 //{
 //	this->clanmates = 35;
 //}
@@ -231,7 +239,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//celestial_static::celestial_static(int deck_index) : sim_card(indexes["celestial_static"], deck_index)
+//celestial_static::celestial_static(int deck_index) : sim_card(names["celestial_static"], deck_index)
 //{
 //	this->charges = 0;
 //}
@@ -249,7 +257,7 @@ double sim_card::calculate_support(double modifier)
 //	return dmg;
 //}
 //
-//blazing_inferno::blazing_inferno(int deck_index) : sim_card(indexes["blazing_inferno"], deck_index) {}
+//blazing_inferno::blazing_inferno(int deck_index) : sim_card(names["blazing_inferno"], deck_index) {}
 //
 //sim_part* blazing_inferno::roll(sim_part* titan_part, double modifier)
 //{

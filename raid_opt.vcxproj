@@ -134,6 +134,7 @@
     <ClCompile Include="player_card_info.cpp" />
     <ClCompile Include="simulation.cpp" />
     <ClCompile Include="sim_card.cpp" />
+    <ClCompile Include="sim_result.cpp" />
     <ClCompile Include="sim_stack.cpp" />
     <ClCompile Include="sim_titan.cpp" />
   </ItemGroup>
@@ -142,12 +143,13 @@
     <ClInclude Include="card_info.h" />
     <ClInclude Include="sim_deck.h" />
     <ClInclude Include="declarations.h" />
-    <ClInclude Include="enumerates.h" />
+    <ClInclude Include="enumerables.h" />
     <ClInclude Include="import_data.h" />
     <ClInclude Include="sim_part.h" />
     <ClInclude Include="player_card_info.h" />
     <ClInclude Include="simulation.h" />
     <ClInclude Include="sim_card.h" />
+    <ClInclude Include="sim_result.h" />
     <ClInclude Include="sim_stack.h" />
     <ClInclude Include="sim_titan.h" />
     <ClInclude Include="titan_info.h" />

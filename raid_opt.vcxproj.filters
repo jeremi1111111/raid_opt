@@ -48,6 +48,9 @@
     <ClCompile Include="sim_stack.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="sim_result.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="import_data.h">
@@ -56,7 +59,7 @@
     <ClInclude Include="simulation.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="enumerates.h">
+    <ClInclude Include="enumerables.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="declarations.h">
@@ -87,6 +90,9 @@
       <Filter>Pliki nagłówkowe\sim_components</Filter>
     </ClInclude>
     <ClInclude Include="sim_titan.h">
+      <Filter>Pliki nagłówkowe\sim_components</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_result.h">
       <Filter>Pliki nagłówkowe\sim_components</Filter>
     </ClInclude>
   </ItemGroup>

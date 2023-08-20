@@ -7,8 +7,7 @@
 class sim_deck
 {
 public:
-	double total_damage;
 	std::vector<sim_card*> deck_cards;
-	sim_deck(player_card_info* c1, player_card_info* c2, player_card_info* c3);
+	sim_deck(card_name& c1, card_name& c2, card_name& c3);
 	void simulate(std::vector<sim_part*> attack_order, int interval = 1, int max_taps = 600);
 };

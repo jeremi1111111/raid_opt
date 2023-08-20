@@ -1,11 +1,5 @@
 #include "sim_titan.h"
 
-sim_titan::sim_titan()
-{
-	for (int i = 0; i < 8; i++)
-		parts.push_back(new sim_part(this, static_cast<part_name>(i)));
-}
-
 void sim_titan::remove_old_stacks(int tap)
 {
 	for (sim_part* part : parts)
@@ -40,3 +34,9 @@ void sim_titan::remove_old_stacks(int tap)
 //	std::uniform_int_distribution<int> dint(0, rollable_parts.size());
 //	return rollable_parts[dint(rng)];
 //}
+
+lojak::lojak(double base_hp, const std::string& titan_bonus_type, double titan_bonus_amount, const std::string& area_bonus_type, double area_bonus_amount)
+	: sim_titan("enemy1", titan_bonus_type, titan_bonus_amount, area_bonus_type, area_bonus_amount)
+{
+	this->parts.push_back(new sim_part(this, part_name::head));
+}

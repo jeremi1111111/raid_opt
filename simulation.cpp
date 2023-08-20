@@ -1,7 +1,10 @@
 #include "simulation.h"
 
-std::vector<sim_deck*> deck_order(std::vector<player_card_info*> chosen_cards)
+std::vector<sim_deck*> deck_order(std::vector<card_name> chosen_cards)
 {
+	if (chosen_cards.empty())
+		for (card_info* ci : cards)
+			chosen_cards.push_back(ci->name);
 	std::vector<sim_deck*> decks;
 	int count = 0;
 	for (int i = 0; i < chosen_cards.size(); i++)

@@ -1,11 +1,15 @@
 #include "player_card_info.h"
 
-player_card_info::player_card_info(std::string& nam, int lvl, int cds)
-{
-	this->index = indexes[nam];
-	this->level = lvl;
-	this->card_shards = cds;
-}
+//player_card_info::player_card_info(std::string& nam, int lvl, int cds)
+//{
+//	auto it = names.find(nam);
+//	if (it != names.end())
+//		this->index = (*it).second;
+//	else
+//		this->index = -1;
+//	this->level = lvl;
+//	this->card_shards = cds;
+//}
 
 //bool player_card_info::roll(double modifier, int counter)
 //{
@@ -51,4 +55,4 @@ player_card_info::player_card_info(std::string& nam, int lvl, int cds)
 //	return support;
 //}
 
-// if results doesn't match, each calculation should be rounded to 2 decimal points
+// if results don't match, each calculation should be rounded to 2 decimal points
