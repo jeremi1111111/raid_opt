@@ -95,5 +95,8 @@
     <ClInclude Include="sim_result.h">
       <Filter>Pliki nagłówkowe\sim_components</Filter>
     </ClInclude>
+    <ClInclude Include="player_info.h">
+      <Filter>Pliki nagłówkowe\game_info</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

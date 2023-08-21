@@ -1,9 +1,11 @@
-#include "player_card_info.h"
+// THIS FILE SHOULD BE DELETED, but just for now i wanna keep it because of the formulas below
+
+//#include "player_card_info.h"
 
 //player_card_info::player_card_info(std::string& nam, int lvl, int cds)
 //{
-//	auto it = names.find(nam);
-//	if (it != names.end())
+//	auto it = card_names.find(nam);
+//	if (it != card_names.end())
 //		this->index = (*it).second;
 //	else
 //		this->index = -1;

@@ -1,9 +1,6 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <iostream>
-#include "declarations.h"
-#include "card_info.h"
+//#include <vector>
+//#include "enumerables.h"
 
 class player_card_info
 {
@@ -16,4 +13,4 @@ public:
 	{}
 };
 
-extern std::vector<player_card_info*> player_info;
+extern std::vector<player_card_info*> player_cards;

@@ -1,15 +1,13 @@
 #pragma once
-#include <string>
 #include "declarations.h"
-#include "sim_titan.h"
-#include "sim_card.h"
 #include "enumerables.h"
+#include "sim_titan.h"
 
 class sim_part
 {
 public:
-	sim_titan* titan;
 	part_name name;
+	sim_titan* titan;
 	//double hp;
 	//double ap;
 	//bool is_cursed;

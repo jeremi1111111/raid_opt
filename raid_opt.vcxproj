@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="area_info.h" />
     <ClInclude Include="card_info.h" />
+    <ClInclude Include="player_info.h" />
     <ClInclude Include="sim_deck.h" />
     <ClInclude Include="declarations.h" />
     <ClInclude Include="enumerables.h" />

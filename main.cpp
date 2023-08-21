@@ -1,14 +1,18 @@
-#include "declarations.h"
+#include "card_info.h"
+#include "player_card_info.h"
+#include "titan_info.h"
+#include "area_info.h"
 #include "import_data.h"
-#include "simulation.h"
 #include "sim_card.h"
 
 std::vector<card_info*> cards;
 std::vector<int> card_cost;
 std::vector<int> dust_cost;
-std::unordered_map<std::string, card_name> names;
-std::unordered_map<std::string, card_category> categories;
-std::vector<player_card_info*> player_info;
+std::unordered_map<std::string, card_name> card_names;
+std::unordered_map<std::string, card_category> card_categories;
+std::unordered_map<std::string, enemy_id> titan_names;
+std::unordered_map<std::string, area_id> area_ids;
+std::vector<player_card_info*> player_cards;
 std::vector<titan_info*> titans;
 std::vector<area_info*> areas;
 
@@ -20,16 +24,13 @@ int main()
 {
 	create_indexes();
 	import_cards("RaidSkillInfo.csv");
-	std::cout << cards.size() << '\n';
-	std::cout << names.size() << '\n';
-	import_player("export_sample_26_06.txt");
-	std::cout << player_info.size() << '\n';
+	import_player("export_sample_21_08.txt");
 	import_titans("RaidEnemyInfo.csv");
-	std::cout << titans.size() << '\n';
 	import_areas("RaidAreaInfo.csv");
-	std::cout << areas.size() << '\n';
+	player_info* player = input_player_info();
 	//sim_part* sp = new sim_part(nullptr, part_name::head);
-	//sim_card* sc = new chain_of_vengeance(names["chain_of_vengeance"]);
+	//sim_card* sc = new moon_beam(card_name::moon_beam, nullptr, 0);
+	//std::cout << sc->calculate_dmg(812 * 1.06) * 4;
 	//std::cout << sc->calculate_dmg(sp);
 	//while (!sc->roll(sp))
 	//	std::cout << "reroll\n";
@@ -40,7 +41,7 @@ int main()
 	//std::vector<sim_deck*> decks = deck_order();
 	//std::cout << decks.size();
 	//player_card_info* c = nullptr;
-	//for (player_card_info* card : player_info)
+	//for (player_card_info* card : player_cards)
 	//	if (card->card_data->name == "Skull Bash")
 	//	{
 	//		c = card;

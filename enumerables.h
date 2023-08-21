@@ -1,6 +1,6 @@
 #pragma once
 
-enum class card_name : int
+enum class card_name
 {
 	moon_beam = 0,
 	fragmentize = 1,
@@ -46,6 +46,27 @@ enum class card_category
 	burst = 0,
 	affliction = 1,
 	support = 2,
+};
+
+enum class enemy_id
+{
+	lojak = 0,
+	takedar = 1,
+	jukk = 2,
+	sterl = 3,
+	mohaca = 4,
+	terro = 5,
+	klonk = 6,
+	priker = 7,
+};
+
+enum class area_id
+{
+	area1 = 0,
+	area2 = 1,
+	area3 = 2,
+	area4 = 3,
+	areaspecial1 = 4,
 };
 
 enum class part_name

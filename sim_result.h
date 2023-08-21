@@ -1,5 +1,4 @@
 #pragma once
-#include "declarations.h"
 #include "enumerables.h"
 
 class sim_result
