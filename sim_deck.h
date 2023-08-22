@@ -11,4 +11,5 @@ public:
 	std::vector<sim_card*> deck_cards;
 	sim_deck(card_name c1, card_name c2, card_name c3);
 	void simulate(double base_dmg, sim_titan* titan, int max_taps = 600);
+	int total_burst_count();
 };

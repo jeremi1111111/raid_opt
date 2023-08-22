@@ -1,10 +1,12 @@
 #pragma once
+#include <functional>
 //#include <vector>
 //#include <random>
 //#include "enumerables.h"
 #include "declarations.h"
-//#include "sim_deck.h"
+#include "sim_deck.h"
 //#include "sim_titan.h"
+#include "sim_part.h"
 #include "card_info.h"
 #include "player_card_info.h"
 
@@ -18,12 +20,17 @@ public:
 	card_category category;
 	double roll_chance;
 	double base_dmg;
+	int delay = 0;
+	int counter = 0;
+	static std::vector<std::function<sim_card* (sim_deck*, int)>> scb;
 	static sim_card* sim_card_builder(card_name name, sim_deck* deck, int deck_index);
 	sim_card(const card_name name, sim_deck* deck, int deck_index);
-	virtual bool roll(double modifier = 1.);
-	//virtual void add_stack(sim_part* titan_part, int tap_count);
+	virtual bool roll(sim_part* part, double modifier = 1.);
+	virtual void add_stack(sim_part* part, int tap_count);
 	//virtual void remove_stacks(sim_part* titan_part, int tap_count);
-	virtual double calculate_dmg(double modifier = 1.);
+
+	//it's important to remember that effects of some cards are dalayed
+	virtual double calculate_dmg(sim_part* part, double modifier = 1.);
 	//virtual double calculate_support(double modifier = 1.);
 	virtual double roll_boost();
 };
@@ -33,7 +40,7 @@ class moon_beam : public sim_card
 public:
 	double torso_dmg_mult;
 	moon_beam(sim_deck* deck, int deck_index);
-	double calculate_dmg(double modifier);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class fragmentize : public sim_card
@@ -42,6 +49,7 @@ public:
 	double cursed_dmg_mult;
 	double armor_dmg_mult;
 	fragmentize(sim_deck* deck, int deck_index);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class skull_bash : public sim_card
@@ -49,6 +57,7 @@ class skull_bash : public sim_card
 public:
 	double head_dmg_mult;
 	skull_bash(sim_deck* deck, int deck_index);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class razor_wind : public sim_card
@@ -56,6 +65,7 @@ class razor_wind : public sim_card
 public:
 	double body_dmg_mult;
 	razor_wind(sim_deck* deck, int deck_index);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class whip_of_lightning : public sim_card
@@ -64,7 +74,8 @@ public:
 	double chance_per_afflicted_part;
 	double max_bonus_chance;
 	whip_of_lightning(sim_deck* deck, int deck_index);
-	bool roll(double modifier);
+	bool roll(sim_part* part, double modifier);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class clanship_barrage : public sim_card
@@ -72,14 +83,15 @@ class clanship_barrage : public sim_card
 public:
 	double dmg_adt_per_burst;
 	clanship_barrage(sim_deck* deck, int deck_index);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class purifying_blast : public sim_card
 {
 public:
 	double dmg_adt_per_affliction;
-	// need to implement removing afflictions stacks
 	purifying_blast(sim_deck* deck, int deck_index);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class psychic_shackles : public sim_card
@@ -87,6 +99,7 @@ class psychic_shackles : public sim_card
 public:
 	double limb_dmg_mult;
 	psychic_shackles(sim_deck* deck, int deck_index);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class flak_shot : public sim_card
@@ -95,31 +108,39 @@ public:
 	double richochet_dmg_mult;
 	bool ricochet_flag;
 	flak_shot(sim_deck* deck, int deck_index);
+	bool roll(sim_part* part, double modifier);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class cosmic_haymaker : public sim_card
 {
 public:
 	int tap_count_for_outburst;
-	int tap_count;
+	int tap_count = 0;
 	cosmic_haymaker(sim_deck* deck, int deck_index);
+	bool roll(sim_part* part, double modifier);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class chain_of_vengeance : public sim_card
 {
 public:
+	int max_targets;
 	std::vector<part_name> previously_hit;
 	chain_of_vengeance(sim_deck* deck, int deck_index);
+	bool roll(sim_part* part, double modifier);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class mirror_force : public sim_card
 {
 public:
 	double dmg_mult_per_clanmate;
-	int max_clanmates;
+	double max_boost;
 	// might wanna keep it somewhere else
-	int clanmates;
+	int clanmates = 35;
 	mirror_force(sim_deck* deck, int deck_index);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class celestial_static : public sim_card
@@ -130,6 +151,8 @@ public:
 	int max_charges;
 	int charges = 0;
 	celestial_static(sim_deck* deck, int deck_index);
+	bool roll(sim_part* part, double modifier);
+	double calculate_dmg(sim_part* part, double modifier);
 };
 
 class blazing_inferno : public sim_card
@@ -137,7 +160,8 @@ class blazing_inferno : public sim_card
 public:
 	double chance_per_burning_part;
 	blazing_inferno(sim_deck* deck, int deck_index);
-	bool roll(double modifier = 1.);
+	double calculate_dmg(sim_part* part, double modifier);
+	bool roll(sim_part* part, double modifier = 1.);
 };
 
 class acid_drench : public sim_card

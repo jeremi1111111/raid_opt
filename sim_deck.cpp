@@ -2,7 +2,9 @@
 
 sim_deck::sim_deck(card_name c1, card_name c2, card_name c3)
 {
+	int index = static_cast<int>(c1);
 	this->deck_cards = {
+		//change it to this vector builder dings
 		sim_card::sim_card_builder(c1, this, 0),
 		sim_card::sim_card_builder(c2, this, 1),
 		sim_card::sim_card_builder(c3, this, 2),
@@ -43,4 +45,13 @@ void sim_deck::simulate(double base_dmg, sim_titan* titan, int max_taps)
 		//	if (sc->is_support)
 		double dmg[] = { 0, 0, 0 };
 	}
+}
+
+int sim_deck::total_burst_count()
+{
+	int counter = 0;
+	for (sim_card* sc : this->deck_cards)
+		if (sc->category == card_category::burst)
+			counter += sc->counter;
+	return counter;
 }
