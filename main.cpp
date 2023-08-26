@@ -1,9 +1,9 @@
-#include "card_info.h"
-#include "player_card_info.h"
-#include "titan_info.h"
-#include "area_info.h"
-#include "import_data.h"
-#include "sim_card.h"
+#include "game_info/card_info.h"
+#include "game_info/player_card_info.h"
+#include "game_info/titan_info.h"
+#include "game_info/area_info.h"
+#include "program/import_data.h"
+#include "sim_components/sim_card.h"
 
 std::vector<card_info*> cards;
 std::vector<int> card_cost;

@@ -2,12 +2,12 @@
 
 class player_info
 {
-public:
 	int raid_dmg;
 	int jade_bonus;
 	int season_bonus;
 	int dust;
 	int wildcards;
+public:
 	player_info(int raid_dmg, int jade_bonus, int season_bonus, int dust, int wildcards)
 		: raid_dmg(raid_dmg), jade_bonus(jade_bonus), season_bonus(season_bonus), dust(dust), wildcards(wildcards)
 	{}

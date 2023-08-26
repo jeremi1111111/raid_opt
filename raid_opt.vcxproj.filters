@@ -19,84 +19,99 @@
     <Filter Include="Pliki nagłówkowe\sim_components">
       <UniqueIdentifier>{2f69886a-3e99-43b7-b744-d8eda0b172a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\program">
+      <UniqueIdentifier>{0ea5ee95-ecf9-4561-869e-fbfb261eb028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\game_info">
+      <UniqueIdentifier>{605d308f-df64-472f-a8f6-7a01748eba23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\program">
+      <UniqueIdentifier>{6b6df674-2dbc-49f3-9d25-017c3327c230}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\sim_components">
+      <UniqueIdentifier>{6fbed8e3-58f0-4670-910f-59f9f57050ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="import_data.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="game_info\player_card_info.cpp">
+      <Filter>Pliki źródłowe\game_info</Filter>
     </ClCompile>
-    <ClCompile Include="player_card_info.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="program\attack_details.cpp">
+      <Filter>Pliki źródłowe\program</Filter>
     </ClCompile>
-    <ClCompile Include="simulation.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="program\import_data.cpp">
+      <Filter>Pliki źródłowe\program</Filter>
     </ClCompile>
-    <ClCompile Include="sim_deck.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="program\simulation.cpp">
+      <Filter>Pliki źródłowe\program</Filter>
     </ClCompile>
-    <ClCompile Include="sim_titan.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="sim_components\sim_card.cpp">
+      <Filter>Pliki źródłowe\sim_components</Filter>
     </ClCompile>
-    <ClCompile Include="sim_part.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="sim_components\sim_deck.cpp">
+      <Filter>Pliki źródłowe\sim_components</Filter>
     </ClCompile>
-    <ClCompile Include="sim_card.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="sim_components\sim_part.cpp">
+      <Filter>Pliki źródłowe\sim_components</Filter>
     </ClCompile>
-    <ClCompile Include="sim_stack.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="sim_components\sim_result.cpp">
+      <Filter>Pliki źródłowe\sim_components</Filter>
     </ClCompile>
-    <ClCompile Include="sim_result.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="sim_components\sim_stack.cpp">
+      <Filter>Pliki źródłowe\sim_components</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\sim_titan.cpp">
+      <Filter>Pliki źródłowe\sim_components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="import_data.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="simulation.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="enumerables.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="declarations.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="area_info.h">
+    <ClInclude Include="game_info\area_info.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
-    <ClInclude Include="card_info.h">
+    <ClInclude Include="game_info\card_info.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
-    <ClInclude Include="player_card_info.h">
+    <ClInclude Include="game_info\enumerables.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
-    <ClInclude Include="titan_info.h">
+    <ClInclude Include="game_info\player_card_info.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
-    <ClInclude Include="sim_card.h">
-      <Filter>Pliki nagłówkowe\sim_components</Filter>
-    </ClInclude>
-    <ClInclude Include="sim_deck.h">
-      <Filter>Pliki nagłówkowe\sim_components</Filter>
-    </ClInclude>
-    <ClInclude Include="sim_part.h">
-      <Filter>Pliki nagłówkowe\sim_components</Filter>
-    </ClInclude>
-    <ClInclude Include="sim_stack.h">
-      <Filter>Pliki nagłówkowe\sim_components</Filter>
-    </ClInclude>
-    <ClInclude Include="sim_titan.h">
-      <Filter>Pliki nagłówkowe\sim_components</Filter>
-    </ClInclude>
-    <ClInclude Include="sim_result.h">
-      <Filter>Pliki nagłówkowe\sim_components</Filter>
-    </ClInclude>
-    <ClInclude Include="player_info.h">
+    <ClInclude Include="game_info\titan_info.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_components\sim_card.h">
+      <Filter>Pliki nagłówkowe\sim_components</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_components\sim_deck.h">
+      <Filter>Pliki nagłówkowe\sim_components</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_components\sim_part.h">
+      <Filter>Pliki nagłówkowe\sim_components</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_components\sim_result.h">
+      <Filter>Pliki nagłówkowe\sim_components</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_components\sim_stack.h">
+      <Filter>Pliki nagłówkowe\sim_components</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_components\sim_titan.h">
+      <Filter>Pliki nagłówkowe\sim_components</Filter>
+    </ClInclude>
+    <ClInclude Include="program\attack_details.h">
+      <Filter>Pliki nagłówkowe\program</Filter>
+    </ClInclude>
+    <ClInclude Include="program\import_data.h">
+      <Filter>Pliki nagłówkowe\program</Filter>
+    </ClInclude>
+    <ClInclude Include="program\player_info.h">
+      <Filter>Pliki nagłówkowe\program</Filter>
+    </ClInclude>
+    <ClInclude Include="program\simulation.h">
+      <Filter>Pliki nagłówkowe\program</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

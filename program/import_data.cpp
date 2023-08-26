@@ -355,7 +355,3 @@ player_info* input_player_info()
 		jb = 0;
 	return new player_info(rl + 100, jb, sb, dust, wc);
 }
-
-// ideas:
-// save cards and player_cards as std::map
-// change card_names from map to enum (is it even possible?)

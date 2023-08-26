@@ -1,5 +1,5 @@
 #pragma once
-#include "enumerables.h"
+#include "../game_info/enumerables.h"
 
 class sim_result
 {

@@ -11,6 +11,11 @@ sim_part::sim_part(sim_titan* titan, part_name name)
 	//this->deck_stacks = new std::vector<int>[3];
 }
 
+void sim_part::add_stack(sim_card* card, int expire_tap)
+{
+	this->deck_stacks[card->deck_index]->active_stacks.push_back(expire_tap);
+}
+
 void sim_part::remove_old_stacks(int tap)
 {
 }
@@ -22,6 +27,16 @@ bool sim_part::is_afflicted()
 			if (!st->active_stacks.empty())
 				return true;
 	return false;
+}
+
+int sim_part::get_stack_count(sim_card* card)
+{
+	return deck_stacks[card->get_deck_index()]->size();
+}
+
+double sim_part::get_ap()
+{
+	return ap;
 }
 
 int sim_part::count_afflicted_stacks()
