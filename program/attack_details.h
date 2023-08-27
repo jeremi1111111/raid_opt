@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "../game_info/enumerables.h"
 #include "player_info.h"
+#include "../game_info/enumerables.h"
 
 class attack_details
 {

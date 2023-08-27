@@ -1,4 +1,8 @@
 #include "sim_deck.h"
+#include "sim_card.h"
+#include "sim_part.h"
+#include "sim_titan.h"
+#include "../program/attack_details.h"
 
 sim_deck::sim_deck(card_name c1, card_name c2, card_name c3)
 {

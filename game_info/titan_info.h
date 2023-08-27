@@ -1,8 +1,7 @@
 #pragma once
-//#include <string>
-//#include <unordered_map>
-//#include <vector>
-//#include "enumerables.h"
+#include <string>
+#include <unordered_map>
+#include "enumerables.h"
 
 class titan_info
 {

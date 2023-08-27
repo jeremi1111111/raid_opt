@@ -1,4 +1,7 @@
+#include <random>
 #include "sim_titan.h"
+#include "sim_part.h"
+#include "../program/simulation.h"
 
 sim_part* sim_titan::get_part(part_name name)
 {
@@ -41,8 +44,8 @@ sim_part* sim_titan::random_part(sim_part* skipped_part, bool body_only_flag)
 	return rollable_parts[dint(rng)];
 }
 
-lojak::lojak(double base_hp, const std::string& titan_bonus_type, double titan_bonus_amount, const std::string& area_bonus_type, double area_bonus_amount)
-	: sim_titan(enemy_id::lojak, titan_bonus_type, titan_bonus_amount, area_bonus_type, area_bonus_amount)
-{
-	this->parts.push_back(new sim_part(this, part_name::head));
-}
+//lojak::lojak(double base_hp, const std::string& titan_bonus_type, double titan_bonus_amount, const std::string& area_bonus_type, double area_bonus_amount)
+//	: sim_titan(enemy_id::lojak, titan_bonus_type, titan_bonus_amount, area_bonus_type, area_bonus_amount)
+//{
+//	this->parts.push_back(new sim_part(this, part_name::head));
+//}

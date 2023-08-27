@@ -1,6 +1,5 @@
 #pragma once
-//#include <string>
-//#include <vector>
+#include <string>
 #include <unordered_map>
 #include <random>
 #include "enumerables.h"
@@ -35,7 +34,3 @@ extern std::vector<int> card_cost;
 extern std::vector<int> dust_cost;
 extern std::unordered_map<std::string, card_name> card_names;
 extern std::unordered_map<std::string, card_category> card_categories;
-
-extern std::random_device rd;
-extern std::mt19937 rng;
-extern std::uniform_real_distribution<double> dist;

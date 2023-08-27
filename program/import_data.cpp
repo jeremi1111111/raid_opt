@@ -1,4 +1,13 @@
+#include <vector>
+#include <algorithm>
+#include <iostream>
+#include <fstream>
 #include "import_data.h"
+#include "../game_info/enumerables.h"
+#include "../game_info/card_info.h"
+#include "../game_info/titan_info.h"
+#include "../game_info/area_info.h"
+#include "../game_info/player_card_info.h"
 
 std::vector<std::string> csv_to_vector(std::string& f_buffer)
 {

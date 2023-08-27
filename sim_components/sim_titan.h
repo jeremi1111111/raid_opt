@@ -1,9 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-//#include "enumerables.h"
-//#include "declarations.h"
-#include "sim_part.h"
+#include "../game_info/enumerables.h"
 
 class sim_card;
 class sim_part;
@@ -29,8 +27,8 @@ public:
 	double apply_dmg(double base_dmg);
 };
 
-class lojak : public sim_titan
-{
-public:
-	lojak(double base_hp, const std::string& titan_bonus_type, double titan_bonus_amount, const std::string& area_bonus_type, double area_bonus_amount);
-};
+//class lojak : public sim_titan
+//{
+//public:
+//	lojak(double base_hp, const std::string& titan_bonus_type, double titan_bonus_amount, const std::string& area_bonus_type, double area_bonus_amount);
+//};

@@ -1,6 +1,5 @@
 #pragma once
-//#include "declarations.h"
-#include "sim_part.h"
+#include <vector>
 
 class sim_card;
 class sim_part;

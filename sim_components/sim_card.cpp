@@ -1,86 +1,92 @@
 #include "sim_card.h"
+#include "sim_stack.h"
+#include "sim_part.h"
+#include "../game_info/card_info.h"
+#include "../game_info/player_card_info.h"
+#include "../program/simulation.h"
+#include "cards/cards.h"
 
 // IMPORTANT!!!
 // APPLY DAMAGES TO PARTS
 // increase stack counters
 
-//std::vector<std::function<sim_card* (sim_deck*, int)>> sim_card::scb = {
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new moon_beam(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new fragmentize(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new skull_bash(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new razor_wind(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new whip_of_lightning(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new clanship_barrage(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new purifying_blast(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new psychic_shackles(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new flak_shot(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new cosmic_haymaker(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new chain_of_vengeance(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new mirror_force(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new celestial_static(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new blazing_inferno(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new acid_drench(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new decaying_strike(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new fusion_bomb(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new grim_shadow(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new thriving_plague(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new radioactivity(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new ravenous_swarm(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new ruinous_rain(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new corrosive_bubbles(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new maelstrom(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new crushing_instinct(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new insanity_void(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new rancid_gas(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new inspiring_force(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new soul_fire(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new victory_march(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new prismatic_rift(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new ancestral_favor(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new grasping_vines(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new totem_of_power(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new team_tactics(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new skeletal_smash(deck, deck_index); },
-//	[](sim_deck* deck, int deck_index) -> sim_card*
-//	{ return new astral_echo(deck, deck_index); }
-//};
-//
+std::vector<std::function<sim_card* (sim_deck*, int, sim_titan*)>> sim_card::sim_card_builder = {
+	[](sim_deck* deck, int deck_index, sim_titan* titan) -> sim_card*
+	{ return new moon_beam(deck, deck_index, titan); }
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new fragmentize(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new skull_bash(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new razor_wind(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new whip_of_lightning(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new clanship_barrage(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new purifying_blast(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new psychic_shackles(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new flak_shot(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new cosmic_haymaker(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new chain_of_vengeance(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new mirror_force(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new celestial_static(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new blazing_inferno(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new acid_drench(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new decaying_strike(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new fusion_bomb(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new grim_shadow(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new thriving_plague(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new radioactivity(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new ravenous_swarm(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new ruinous_rain(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new corrosive_bubbles(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new maelstrom(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new crushing_instinct(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new insanity_void(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new rancid_gas(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new inspiring_force(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new soul_fire(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new victory_march(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new prismatic_rift(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new ancestral_favor(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new grasping_vines(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new totem_of_power(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new team_tactics(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new skeletal_smash(deck, deck_index); },
+	//[](sim_deck* deck, int deck_index) -> sim_card*
+	//{ return new astral_echo(deck, deck_index); }
+};
+
 //sim_card* sim_card::sim_card_builder(card_name name, sim_deck* deck, int deck_index)
 //{
 //	switch (name)
@@ -165,7 +171,7 @@
 //}
 
 sim_card::sim_card(card_name name, sim_deck* deck, int deck_index, sim_titan* titan)
-	: name(name), deck(deck), deck_index(deck_index)
+	: name(name), deck(deck), deck_index(deck_index), titan(titan)
 {
 	int index = static_cast<int>(name);
 	card_info* ci = cards[index];

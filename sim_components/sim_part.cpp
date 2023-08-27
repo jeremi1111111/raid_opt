@@ -1,4 +1,7 @@
 #include "sim_part.h"
+#include "sim_titan.h"
+#include "sim_stack.h"
+#include "sim_card.h"
 
 sim_part::sim_part(sim_titan* titan, part_name name)
 {

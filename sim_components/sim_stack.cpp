@@ -1,4 +1,6 @@
 #include "sim_stack.h"
+#include "sim_part.h"
+#include "sim_card.h"
 
 bool sim_stack::is_full()
 {

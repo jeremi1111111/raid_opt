@@ -1,5 +1,6 @@
 #pragma once
-#include "../game_info/enumerables.h"
+
+enum class card_name;
 
 class sim_result
 {

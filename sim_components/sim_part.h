@@ -1,12 +1,10 @@
 #pragma once
-//#include "declarations.h"
+#include <vector>
 #include "../game_info/enumerables.h"
-#include "sim_titan.h"
-#include "sim_stack.h"
-#include "sim_card.h"
 
 class sim_titan;
 class sim_stack;
+class sim_card;
 
 class sim_part
 {
