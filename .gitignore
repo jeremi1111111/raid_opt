@@ -369,3 +369,5 @@ FodyWeavers.xsd
 /raid_seed_20230702.json
 /export_sample_21_08.txt
 /data_csv
+/old_sim_card.h
+/old_sim_card.cpp

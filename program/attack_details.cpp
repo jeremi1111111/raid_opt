@@ -18,9 +18,6 @@ void attack_details::progress()
 
 part_name attack_details::get_part_name()
 {
-	if (counter == interval)
-		progress();
-	counter++;
 	return *current;
 }
 

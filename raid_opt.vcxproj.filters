@@ -49,6 +49,12 @@
     <Filter Include="Pliki źródłowe\sim_components\cards\bursts">
       <UniqueIdentifier>{b38dd543-bfc7-48c8-bc22-ea9c8da4326c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\sim_components\cards\afflictions">
+      <UniqueIdentifier>{fde8edcb-2f01-4168-977d-4b9fb473ec27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\sim_components\cards\supports">
+      <UniqueIdentifier>{41c5e034-31a7-44f4-8eae-e3ff51c5760e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,9 +62,6 @@
     </ClCompile>
     <ClCompile Include="game_info\player_card_info.cpp">
       <Filter>Pliki źródłowe\game_info</Filter>
-    </ClCompile>
-    <ClCompile Include="program\attack_details.cpp">
-      <Filter>Pliki źródłowe\program</Filter>
     </ClCompile>
     <ClCompile Include="program\import_data.cpp">
       <Filter>Pliki źródłowe\program</Filter>
@@ -89,6 +92,30 @@
     </ClCompile>
     <ClCompile Include="sim_components\cards\bursts\moon_beam.cpp">
       <Filter>Pliki źródłowe\sim_components\cards\bursts</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\cards\affliction.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\cards\support.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\cards\bursts\whip_of_lightning.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards\bursts</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\cards\afflictions\blazing_inferno.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards\afflictions</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\cards\afflictions\fusion_bomb.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards\afflictions</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\cards\supports\totem_of_power.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards\supports</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\cards\supports\ancestral_favor.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards\supports</Filter>
+    </ClCompile>
+    <ClCompile Include="program\attack_details.cpp">
+      <Filter>Pliki źródłowe\program</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +151,6 @@
     </ClInclude>
     <ClInclude Include="sim_components\sim_titan.h">
       <Filter>Pliki nagłówkowe\sim_components</Filter>
-    </ClInclude>
-    <ClInclude Include="program\attack_details.h">
-      <Filter>Pliki nagłówkowe\program</Filter>
     </ClInclude>
     <ClInclude Include="program\import_data.h">
       <Filter>Pliki nagłówkowe\program</Filter>
@@ -259,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="sim_components\cards\supports\astral_echo.h">
       <Filter>Pliki nagłówkowe\sim_components\cards\supports</Filter>
+    </ClInclude>
+    <ClInclude Include="program\attack_details.h">
+      <Filter>Pliki nagłówkowe\program</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

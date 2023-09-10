@@ -5,11 +5,11 @@
 
 class attack_details
 {
-	std::vector<part_name> order;
 	int interval;
 	int max_taps;
 	double base_dmg;
 	int counter;
+	std::vector<part_name> order;
 	std::vector<part_name>::iterator current;
 public:
 	attack_details(player_info* player, const std::vector<part_name>& order, int interval, int max_taps = 600);

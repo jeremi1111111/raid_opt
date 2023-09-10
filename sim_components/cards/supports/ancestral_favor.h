@@ -6,6 +6,6 @@ class ancestral_favor : public support
 public:
 	double burst_sup_adt;
 	double burst_chance_mult;
-	ancestral_favor(sim_deck* deck, int deck_index);
+	//ancestral_favor(sim_deck* deck, int deck_index, sim_titan* titan);
 	double roll_boost(card_category category);
 };

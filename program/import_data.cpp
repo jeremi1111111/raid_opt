@@ -9,6 +9,77 @@
 #include "../game_info/area_info.h"
 #include "../game_info/player_card_info.h"
 
+std::vector<card_info*> cards;
+std::vector<int> card_cost;
+std::vector<int> dust_cost;
+std::vector<player_card_info*> player_cards;
+std::vector<titan_info*> titans;
+std::vector<area_info*> areas;
+
+std::unordered_map<std::string, card_name> card_names = {
+	{ "moon_beam", card_name::moon_beam },
+	{ "fragmentize", card_name::fragmentize },
+	{ "skull_bash", card_name::skull_bash },
+	{ "razor_wind", card_name::razor_wind },
+	{ "whip_of_lightning", card_name::whip_of_lightning },
+	{ "clanship_barrage", card_name::clanship_barrage },
+	{ "purifying_blast", card_name::purifying_blast },
+	{ "psychic_shackles", card_name::psychic_shackles },
+	{ "flak_shot", card_name::flak_shot },
+	{ "cosmic_haymaker", card_name::cosmic_haymaker },
+	{ "chain_of_vengeance", card_name::chain_of_vengeance },
+	{ "mirror_force", card_name::mirror_force },
+	{ "celestial_static", card_name::celestial_static },
+	{ "blazing_inferno", card_name::blazing_inferno },
+	{ "acid_drench", card_name::acid_drench },
+	{ "decaying_strike", card_name::decaying_strike },
+	{ "fusion_bomb", card_name::fusion_bomb },
+	{ "grim_shadow", card_name::grim_shadow },
+	{ "thriving_plague", card_name::thriving_plague },
+	{ "radioactivity", card_name::radioactivity },
+	{ "ravenous_swarm", card_name::ravenous_swarm },
+	{ "ruinous_rain", card_name::ruinous_rain },
+	{ "corrosive_bubbles", card_name::corrosive_bubbles },
+	{ "maelstrom", card_name::maelstrom },
+	{ "crushing_instinct", card_name::crushing_instinct },
+	{ "insanity_void", card_name::insanity_void },
+	{ "rancid_gas", card_name::rancid_gas },
+	{ "inspiring_force", card_name::inspiring_force },
+	{ "soul_fire", card_name::soul_fire },
+	{ "victory_march", card_name::victory_march },
+	{ "prismatic_rift", card_name::prismatic_rift },
+	{ "ancestral_favor", card_name::ancestral_favor },
+	{ "grasping_vines", card_name::grasping_vines },
+	{ "totem_of_power", card_name::totem_of_power },
+	{ "team_tactics", card_name::team_tactics },
+	{ "skeletal_smash", card_name::skeletal_smash },
+	{ "astral_echo", card_name::astral_echo }
+};
+
+std::unordered_map<std::string, card_category> card_categories {
+	{ "burst", card_category::burst},
+	{ "affliction", card_category::affliction},
+	{ "support", card_category::support}
+};
+
+std::unordered_map<std::string, enemy_id> titan_names = {
+	{ "enemy1", enemy_id::lojak },
+	{ "enemy2", enemy_id::takedar },
+	{ "enemy3", enemy_id::jukk },
+	{ "enemy4", enemy_id::sterl },
+	{ "enemy5", enemy_id::mohaca },
+	{ "enemy6", enemy_id::terro },
+	{ "enemy7", enemy_id::klonk },
+	{ "enemy8", enemy_id::priker }
+};
+std::unordered_map<std::string, area_id> area_ids = {
+	{ "area1", area_id::area1 },
+	{ "area2", area_id::area2 },
+	{ "area3", area_id::area3 },
+	{ "area4", area_id::area4 },
+	{ "areaspecial1", area_id::areaspecial1 }
+};
+
 std::vector<std::string> csv_to_vector(std::string& f_buffer)
 {
 	std::vector<std::string> contents;

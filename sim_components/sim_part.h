@@ -8,7 +8,6 @@ class sim_card;
 
 class sim_part
 {
-public:
 	part_name name;
 	sim_titan* titan;
 	double hp;
@@ -16,13 +15,22 @@ public:
 	bool is_cursed;
 	//int tap_count;
 	std::vector<sim_stack*> deck_stacks;
+	//static const std::vector<int> pos_y;
+public:
 	sim_part(sim_titan* titan, part_name name);
-	void add_stack(sim_card* card, int expire_tap);
-	void remove_old_stacks(int tap);
 	bool is_afflicted();
+	sim_stack* get_stack(sim_card* card);
+	void add_stack(sim_card* card, int tap);
+	part_name get_part_name();
+
+	// might wanna use it, but i can get around it
+	//int get_pos_y();
+	/*
+	void remove_old_stacks(int tap);
+	void remove_first_stack(sim_card* card);
 	int count_afflicted_stacks();
 	void invalidate_afflictions();
 
-	int get_stack_count(sim_card* card);
 	double get_ap();
+	*/
 };

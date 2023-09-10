@@ -131,8 +131,15 @@
     <ClCompile Include="program\attack_details.cpp" />
     <ClCompile Include="program\import_data.cpp" />
     <ClCompile Include="program\simulation.cpp" />
+    <ClCompile Include="sim_components\cards\affliction.cpp" />
+    <ClCompile Include="sim_components\cards\afflictions\blazing_inferno.cpp" />
+    <ClCompile Include="sim_components\cards\afflictions\fusion_bomb.cpp" />
     <ClCompile Include="sim_components\cards\burst.cpp" />
     <ClCompile Include="sim_components\cards\bursts\moon_beam.cpp" />
+    <ClCompile Include="sim_components\cards\bursts\whip_of_lightning.cpp" />
+    <ClCompile Include="sim_components\cards\support.cpp" />
+    <ClCompile Include="sim_components\cards\supports\ancestral_favor.cpp" />
+    <ClCompile Include="sim_components\cards\supports\totem_of_power.cpp" />
     <ClCompile Include="sim_components\sim_card.cpp" />
     <ClCompile Include="sim_components\sim_deck.cpp" />
     <ClCompile Include="sim_components\sim_part.cpp" />
