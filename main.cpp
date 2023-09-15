@@ -13,13 +13,33 @@ int main()
 	import_player("data_csv/export_sample_21_08.txt");
 	import_titans("data_csv/RaidEnemyInfo.csv");
 	import_areas("data_csv/RaidAreaInfo.csv");
+	double total = 0.;
+	double min = 1e10;
+	double max = 0.;
+	for (int i = 0; i < 100; i++)
+	{
+		double dmg = simulate();
+		total += dmg;
+		if (dmg < min)
+			min = dmg;
+		else if (dmg > max)
+			max = dmg;
+	}
+	std::cout << "avg: " << total / 100 << "\tmin: " << min << "\tmax: " << max << '\n';
+	/*
+	sim_part* part = new sim_part(nullptr, part_name::head);
 	sim_card* sc = sim_card::sim_card_builder[1]();
+	std::cout << sc->calculate_damage(part, 861);
+	std::cout << "tap\tx\ty\tdelay\ttrig\tend\n";
+	int counter = 0;
 	for (int i = 0; i < 600; i++)
 	{
 		int res = sc->calculate_expire_tap(nullptr, i);
-		if (res != -1)
-			std::cout << res << '\n';
+		if (res > -1)
+			counter++;
 	}
+	std::cout << counter;
+	*/
 	//player_info* player = input_player_info();
 	//sim_part* sp = new sim_part(nullptr, part_name::head);
 	//sim_card* sc = new moon_beam(card_name::moon_beam, nullptr, 0);

@@ -13,7 +13,6 @@ void attack_details::progress()
 	current++;
 	if (current == order.end())
 		current = order.begin();
-	counter = 0;
 }
 
 part_name attack_details::get_part_name()

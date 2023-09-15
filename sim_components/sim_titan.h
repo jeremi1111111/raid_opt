@@ -9,19 +9,19 @@ class sim_part;
 class sim_titan
 {
 	enemy_id name;
-	std::string titan_bonus_type;
-	double titan_bonus_amount;
-	std::string area_bonus_type;
-	double area_bonus_amount;
+	//std::string titan_bonus_type;
+	//double titan_bonus_amount;
+	//std::string area_bonus_type;
+	//double area_bonus_amount;
 	std::vector<sim_part*> parts;
 public:
-	sim_titan(const enemy_id& name, const std::string& titan_bonus_type, double titan_bonus_amount, const std::string& area_bonus_type, double area_bonus_amount)
-		: name(name), titan_bonus_type(titan_bonus_type), titan_bonus_amount(titan_bonus_amount), area_bonus_type(area_bonus_type), area_bonus_amount(area_bonus_amount)
-	{}
-	sim_part* get_part(part_name name);
-	int stack_count(part_name name, sim_card* card);
+	sim_titan(enemy_id name, double base_hp);
 	int count_parts_with_stacks(sim_card* card);
 	int count_afflicted();
+	void set_cards(std::vector<sim_card*> sim_cards);
+
+	sim_part* get_part(part_name name);
+	std::vector<sim_part*> get_parts();
 	/*
 	void remove_old_stacks(int tap);
 	//int count_total_bursts();

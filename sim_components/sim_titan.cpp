@@ -1,7 +1,25 @@
+#include <iostream>
 #include "sim_titan.h"
 #include "sim_part.h"
 #include "sim_stack.h"
 #include "../program/simulation.h"
+#include "../game_info/titan_info.h"
+
+sim_titan::sim_titan(enemy_id name, double base_hp)
+	: name(name)
+{
+	titan_info* ti = titans[static_cast<int>(name)];
+	parts = {
+		new sim_part(this, part_name::head, base_hp * ti->body_head_mult, base_hp * ti->armor_head_mult),
+		new sim_part(this, part_name::torso, base_hp * ti->body_torso_mult, base_hp * ti->armor_torso_mult),
+		new sim_part(this, part_name::left_arm, base_hp * ti->body_arms_mult / 4, base_hp * ti->armor_arms_mult / 4),
+		new sim_part(this, part_name::left_hand, base_hp * ti->body_arms_mult / 4, base_hp * ti->armor_arms_mult / 4),
+		new sim_part(this, part_name::right_arm, base_hp * ti->body_arms_mult / 4, base_hp * ti->armor_arms_mult / 4),
+		new sim_part(this, part_name::right_hand, base_hp * ti->body_arms_mult / 4, base_hp * ti->armor_arms_mult / 4),
+		new sim_part(this, part_name::left_leg, base_hp * ti->body_legs_mult / 2, base_hp * ti->armor_legs_mult / 2),
+		new sim_part(this, part_name::right_leg, base_hp * ti->body_legs_mult / 2, base_hp * ti->armor_legs_mult / 2),
+	};
+}
 
 sim_part* sim_titan::get_part(part_name name)
 {
@@ -22,18 +40,24 @@ int sim_titan::count_afflicted()
     return counter;
 }
 
+void sim_titan::set_cards(std::vector<sim_card*> sim_cards)
+{
+	for (sim_part* part : parts)
+		part->create_stacks(sim_cards);
+}
+
+std::vector<sim_part*> sim_titan::get_parts()
+{
+	return parts;
+}
+
 int sim_titan::count_parts_with_stacks(sim_card* card)
 {
 	int counter = 0;
 	for (sim_part* part : parts)
-		if (!part->get_stack(card)->is_empty())
+		if (!part->get_stack(card)->empty())
 			counter++;
 	return counter;
-}
-
-int sim_titan::stack_count(part_name name, sim_card* card)
-{
-	return get_part(name)->get_stack(card)->size();
 }
 
 //sim_part* sim_titan::random_part(sim_part* skipped_part, bool body_only_flag)

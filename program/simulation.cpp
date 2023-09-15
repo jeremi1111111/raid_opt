@@ -1,6 +1,12 @@
+#include <iostream>
 #include "simulation.h"
 #include "../game_info/card_info.h"
 #include "../sim_components/sim_deck.h"
+#include "../sim_components/sim_card.h"
+#include "../sim_components/sim_part.h"
+#include "../sim_components/sim_stack.h"
+#include "../sim_components/sim_titan.h"
+#include "attack_details.h"
 
 std::random_device rd;
 std::mt19937 rng(rd());
@@ -24,4 +30,19 @@ std::vector<sim_deck*> deck_order(std::vector<card_name> chosen_cards)
 	//		}
 	//return decks;
 	return {};
+}
+
+double simulate()
+{
+	sim_titan* titan = new sim_titan(enemy_id::lojak, 1e9);
+	player_info* player = new player_info(824, 4, 1, 0, 0);
+	attack_details* attack = new attack_details(player, { part_name::head }, 600, 600);
+	sim_deck* deck = new sim_deck({ 1, 2, 3 }, titan, attack);
+	titan->set_cards(deck->get_deck_cards());
+	double dmg = deck->simulate();
+	//std::cout << deck->get_tap_dmg() << '\t';
+	//for (sim_card* card : deck->get_deck_cards())
+	//	std::cout << card->get_dmg_dealt() << '\t';
+	//std::cout << "|\t" << dmg << '\n';
+	return dmg;
 }

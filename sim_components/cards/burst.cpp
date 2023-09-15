@@ -25,4 +25,10 @@ burst::burst(card_name name, sim_deck* deck, int deck_index)
 	: sim_card(name, deck, deck_index)
 {
 	category = card_category::burst;
+	base_dmg = card_data->bonus_amount_a[level];
+}
+
+int burst::get_max_stacks()
+{
+	return 2;
 }

@@ -6,6 +6,7 @@
 class sim_deck;
 
 std::vector<sim_deck*> deck_order(std::vector<card_name> chosen_cards);
+double simulate();
 
 extern std::random_device rd;
 extern std::mt19937 rng;

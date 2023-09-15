@@ -117,6 +117,12 @@
     <ClCompile Include="program\attack_details.cpp">
       <Filter>Pliki źródłowe\program</Filter>
     </ClCompile>
+    <ClCompile Include="sim_components\cards\bursts\purifying_blast.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards\bursts</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_components\cards\afflictions\acid_drench.cpp">
+      <Filter>Pliki źródłowe\sim_components\cards\afflictions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_info\area_info.h">

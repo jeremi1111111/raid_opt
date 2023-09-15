@@ -7,4 +7,5 @@ protected:
 	support(card_name name, sim_deck* deck, int deck_index);
 public:
 	bool roll(double modifier);
+	int get_max_stacks();
 };

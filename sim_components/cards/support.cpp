@@ -10,3 +10,8 @@ bool support::roll(double modifier)
 {
 	return false;
 }
+
+int support::get_max_stacks()
+{
+	return 0;
+}
