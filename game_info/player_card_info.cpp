@@ -1,8 +1,8 @@
 // THIS FILE SHOULD BE DELETED, but just for now i wanna keep it because of the formulas below
 
-//#include "player_card_info.h"
+//#include "player_card_t.h"
 
-//player_card_info::player_card_info(std::string& nam, int lvl, int cds)
+//player_card_t::player_card_t(std::string& nam, int lvl, int cds)
 //{
 //	auto it = card_names.find(nam);
 //	if (it != card_names.end())
@@ -13,7 +13,7 @@
 //	this->card_shards = cds;
 //}
 
-//bool player_card_info::roll(double modifier, int counter)
+//bool player_card_t::roll(double modifier, int counter)
 //{
 //	double roll_chance = this->card_data->chance;
 //	if (counter)
@@ -28,7 +28,7 @@
 //	return false;
 //}
 //
-//double player_card_info::calculate_damage(double modifier, int counter_multiplicative, bool flag_b, int counter_additive)
+//double player_card_t::calculate_damage(double modifier, int counter_multiplicative, bool flag_b, int counter_additive)
 //{
 //	if (modifier <= 0.)
 //		return 0.;
@@ -41,7 +41,7 @@
 //	return damage;
 //}
 //
-//double player_card_info::calculate_support(double modifier, bool flag_a, int counter)
+//double player_card_t::calculate_support(double modifier, bool flag_a, int counter)
 //{
 //	if (modifier <= 0.)
 //		return 1.;

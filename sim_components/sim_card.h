@@ -5,8 +5,8 @@
 #include "sim_titan.h"
 #include "sim_part.h"
 #include "sim_stack.h"
-#include "../game_info/card_info.h"
-#include "../game_info/player_card_info.h"
+#include "../game_info/card_info_t.h"
+#include "../game_info/player_card_t.h"
 #include "../game_info/enumerables.h"
 #include "../program/attack_details.h"
 #include "../program/simulation.h"
@@ -21,7 +21,7 @@ protected:
 	card_category category;
 	sim_deck* deck;
 	int deck_index;
-	card_info* card_data;
+	card_info_t* card_data;
 	int level;
 	int max_stacks;
 	double duration;
@@ -29,10 +29,11 @@ protected:
 	double total_dmg;
 	sim_card(card_name name, sim_deck* deck, int deck_index);
 public:
+	virtual ~sim_card() = default;
 	static std::vector<std::function<sim_card*(sim_deck*, int)>> sim_card_builder;
 
 	virtual double roll_boost(sim_card* card);
-	virtual bool roll(double modifier);
+	virtual bool roll(double modifier, sim_part* part);
 	virtual int calculate_expire_tap(sim_stack* stack, int tap);
 	virtual double calculate_support(sim_part* part, sim_card* other);
 	virtual double calculate_damage(sim_part* part, int tap, double modifier);

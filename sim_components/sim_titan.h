@@ -16,6 +16,7 @@ class sim_titan
 	std::vector<sim_part*> parts;
 public:
 	sim_titan(enemy_id name, double base_hp);
+	~sim_titan();
 	int count_parts_with_stacks(sim_card* card);
 	int count_afflicted();
 	void set_cards(std::vector<sim_card*> sim_cards);

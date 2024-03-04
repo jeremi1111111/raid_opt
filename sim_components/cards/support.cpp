@@ -6,7 +6,7 @@ support::support(card_name name, sim_deck* deck, int deck_index)
 	category = card_category::support;
 }
 
-bool support::roll(double modifier)
+bool support::roll(double modifier, sim_part* part)
 {
 	return false;
 }

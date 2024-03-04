@@ -3,6 +3,10 @@
 #include "sim_part.h"
 #include "sim_card.h"
 
+sim_stack::sim_stack(sim_part* part, sim_card* card)
+	: part(part), card(card)
+{}
+
 bool sim_stack::is_full()
 {
 	//if (active_stacks.size() == card->get_max_stacks())
@@ -40,14 +44,7 @@ double sim_stack::calculate_dmg(double base_dmg, int tap)
 {
 	if (size() == 0)
 		return 0.;
-	double dmg = card->calculate_damage(part, tap, base_dmg);
-	total_dmg += dmg;
-	return dmg;
-}
-
-double sim_stack::get_dmg()
-{
-	return total_dmg;
+	return card->calculate_damage(part, tap, base_dmg);
 }
 
 int sim_stack::size()

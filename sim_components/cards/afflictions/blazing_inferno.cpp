@@ -1,6 +1,6 @@
 #include "blazing_inferno.h"
 
-bool blazing_inferno::roll(double modifier)
+bool blazing_inferno::roll(double modifier, sim_part* part)
 {
     int burning_count = deck->get_titan()->count_parts_with_stacks(this);
     double chance = roll_chance + chance_per_burning_part * burning_count;

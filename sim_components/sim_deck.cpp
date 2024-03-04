@@ -14,6 +14,12 @@ sim_deck::sim_deck(std::vector<int> card_indexes, sim_titan* titan, attack_detai
 	//	deck_cards.push_back(sim_card::sim_card_builder[card_indexes[i]](this, i));
 }
 
+sim_deck::~sim_deck()
+{
+	for (sim_card* card : deck_cards)
+		delete card;
+}
+
 //sim_deck::sim_deck(card_name c1, card_name c2, card_name c3)
 //{
 //	int index = static_cast<int>(c1);
@@ -43,13 +49,13 @@ std::vector<double> sim_deck::calculate_roll_modifiers()
 	//};
 }
 
-std::vector<bool> sim_deck::roll_deck(std::vector<double> modifiers)
+std::vector<bool> sim_deck::roll_deck(std::vector<double> modifiers, sim_part* part)
 {
 	std::vector<bool> roll_results(deck_cards.size(), false);
 	for (sim_card* card : deck_cards)
 	{
 		int index = card->get_deck_index();
-		roll_results[index] = card->roll(modifiers[index]);
+		roll_results[index] = card->roll(modifiers[index], part);
 	}
 	return roll_results;
 
@@ -73,14 +79,14 @@ double sim_deck::simulate()
 	//std::vector<double> roll_modifiers = calculate_roll_modifiers();
 	std::vector<double> roll_modifiers = { 1., 1., 1. };
 
-	part_name attacked_part_name = attack->get_part_name();
 	int max_taps = attack->get_max_taps();
 	double base_dmg = attack->get_base_dmg();
 
 	for (int tap = 0; tap < max_taps; tap++)
 	{
+		part_name attacked_part_name = attack->get_part_name(tap);
 		sim_part* attacked_part = titan->get_part(attacked_part_name);
-		std::vector<bool> roll_results = roll_deck(roll_modifiers);
+		std::vector<bool> roll_results = roll_deck(roll_modifiers, attacked_part);
 
 		for (int i = 0; i < roll_results.size(); i++)
 			if (roll_results[i])

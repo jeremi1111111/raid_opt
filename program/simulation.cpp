@@ -1,6 +1,6 @@
 #include <iostream>
 #include "simulation.h"
-#include "../game_info/card_info.h"
+#include "../game_info/card_info_t.h"
 #include "../sim_components/sim_deck.h"
 #include "../sim_components/sim_card.h"
 #include "../sim_components/sim_part.h"
@@ -16,7 +16,7 @@ std::uniform_real_distribution<double> dist(0., 1.);
 std::vector<sim_deck*> deck_order(std::vector<card_name> chosen_cards)
 {
 	//if (chosen_cards.empty())
-	//	for (card_info* ci : cards)
+	//	for (card_info_t* ci : cards)
 	//		chosen_cards.push_back(ci->name);
 	//std::vector<sim_deck*> decks;
 	//int count = 0;
@@ -44,5 +44,9 @@ double simulate()
 	//for (sim_card* card : deck->get_deck_cards())
 	//	std::cout << card->get_dmg_dealt() << '\t';
 	//std::cout << "|\t" << dmg << '\n';
+	delete titan;
+	delete player;
+	delete attack;
+	delete deck;
 	return dmg;
 }

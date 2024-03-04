@@ -5,17 +5,12 @@
 
 class attack_details
 {
-	int interval;
 	int max_taps;
 	double base_dmg;
-	int counter;
 	std::vector<part_name> order;
-	std::vector<part_name>::iterator current;
 public:
-	attack_details(player_info* player, const std::vector<part_name>& order, int interval, int max_taps = 600);
-	void progress();
-	part_name get_part_name();
+	attack_details(player_info* player, const std::vector<part_name>& order_template, int interval, int max_taps = 600);
+	part_name get_part_name(int tap);
 	double get_base_dmg();
 	int get_max_taps();
 };
-

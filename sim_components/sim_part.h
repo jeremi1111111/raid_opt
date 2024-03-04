@@ -18,6 +18,7 @@ class sim_part
 	//static const std::vector<int> pos_y;
 public:
 	sim_part(sim_titan* titan, part_name name, double hp, double ap);
+	~sim_part();
 	bool is_afflicted();
 	int get_affliction_stack_count();
 	sim_stack* get_stack(sim_card* card);

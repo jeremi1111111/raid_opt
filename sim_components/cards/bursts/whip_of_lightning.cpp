@@ -1,6 +1,6 @@
 #include "whip_of_lightning.h"
 
-bool whip_of_lightning::roll(double modifier)
+bool whip_of_lightning::roll(double modifier, sim_part* part)
 {
     int affliction_count = deck->get_titan()->count_afflicted();
     double chance = roll_chance + std::min(chance_per_afflicted_part * affliction_count, max_bonus_chance);

@@ -31,7 +31,7 @@ double sim_card::roll_boost(sim_card* card)
 	return 1.0;
 }
 
-bool sim_card::roll(double modifier)
+bool sim_card::roll(double modifier, sim_part* part)
 {
 	if (dist(rng) >= roll_chance * modifier)
 		return false;

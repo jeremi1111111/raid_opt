@@ -41,35 +41,75 @@ std::uniform_int_distribution<int> totem_of_power::hitbox_delay_roller(0, 6);
 
 const int totem_of_power::delay_threshold = 105;
 
+int totem_of_power::calculate_delay(int tap)
+{
+    int max_taps = deck->get_attack()->get_max_taps();
+    if (tap >= max_taps)
+        return -1;
+    part_name roll_part = deck->get_attack()->get_part_name(tap);
+    int index = static_cast<int>(roll_part);
+
+    int delay_x = 0;
+    // it's 'random' which side is picked
+    if (tap % 2 == 0)
+        delay_x = delay_x_vec[index].first;
+    else
+        delay_x = delay_x_vec[index].second;
+    delay_x -= hitbox_delay_roller(rng);
+
+    std::uniform_int_distribution<int> delay_y_roller(-delay_y_vec[index].first, delay_y_vec[index].second);
+    int delay_y = std::abs(delay_y_roller(rng));
+    delay_y -= hitbox_delay_roller(rng);
+
+    int delay_sq = std::pow(delay_x, 2) + std::pow(delay_y, 2);
+    int final_delay = std::pow(delay_sq, 0.5);
+
+    int result_tap = tap + final_delay;
+    if (result_tap >= max_taps)
+        return -1;
+    part_name result_part = deck->get_attack()->get_part_name(result_tap);
+    if (result_part != roll_part)
+        return -1;
+    return tap + final_delay;
+}
+
 totem_of_power::totem_of_power(sim_deck* deck, int deck_index)
     : support(card_name::totem_of_power, deck, deck_index)
 {
-    all_sup_adt = card_data->bonus_amount_a[level];
-    stack_duration = card_data->bonus_amount_c * 20;
-    spawn_rate = card_data->bonus_amount_d;
-    randomness = card_data->bonus_amount_e;
-    //int max_taps = deck->get_attack()->get_max_taps();
-    int max_taps = 600;
+    all_sup_adt = card_data->get_bonus_amount('a', level);
+    stack_duration = card_data->get_bonus_amount('c') * 20;
+    spawn_rate = card_data->get_bonus_amount('d');
+    randomness = card_data->get_bonus_amount('e');
+    int max_taps = deck->get_attack()->get_max_taps();
+    //int max_taps = 600;
     double step = spawn_rate * 20;
 
-    std::uniform_int_distribution<int> roller(-step, step);
+    std::uniform_int_distribution<int> step_randomizer(-step, step);
 
     double current_step = step;
     while (current_step < max_taps)
     {
-        roll_pattern.push_back(current_step + roller(rng));
+        int roll_step = current_step + step_randomizer(rng);
+        int stack_step = calculate_delay(roll_step);
+        if (stack_step != -1)
+            roll_pattern.push_back(stack_step);
+        //roll_pattern.push_back(current_step + step_randomizer(rng));
         current_step += step;
     }
-    std::sort(roll_pattern.begin(), roll_pattern.end(),
-        [](int a, int b) { return a < b; });
+    std::sort(roll_pattern.begin(), roll_pattern.end());
     current = roll_pattern.begin();
 
     //for (int rp : roll_pattern)
     //    std::cout << rp << ' ';
-    //std::cout << '\n' << roll_pattern.size() << '\n';
+    //std::cout << roll_pattern.size() << '\t';
 }
 
-bool totem_of_power::roll(double modifier)
+//totem_of_power::~totem_of_power()
+//{
+//    roll_pattern.clear();
+//}
+
+bool totem_of_power::roll(double modifier, sim_part* part)
 {
     return true;
 }
@@ -79,8 +119,9 @@ int totem_of_power::calculate_expire_tap(sim_stack* stack, int tap)
     if (current == roll_pattern.end() || tap < *current)
         return -1;
     current++;
-    if (tap > delay_threshold)
-        return tap + stack_duration;
+    return tap + stack_duration;
+    //if (tap > delay_threshold)
+    //    return tap + stack_duration;
 
     //part_name name = stack->get_part()->get_part_name();
     //part_name name = part_name::head;

@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="game_info\card_info_t.cpp" />
     <ClCompile Include="game_info\player_card_info.cpp" />
+    <ClCompile Include="game_info\titan_info_t.cpp" />
     <ClCompile Include="program\attack_details.cpp" />
     <ClCompile Include="program\import_data.cpp" />
     <ClCompile Include="program\simulation.cpp" />
@@ -151,11 +153,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game_info\area_info.h" />
-    <ClInclude Include="game_info\card_info.h" />
+    <ClInclude Include="game_info\area_info_t.h" />
+    <ClInclude Include="game_info\card_info_t.h" />
     <ClInclude Include="game_info\enumerables.h" />
-    <ClInclude Include="game_info\player_card_info.h" />
-    <ClInclude Include="game_info\titan_info.h" />
+    <ClInclude Include="game_info\player_card_t.h" />
+    <ClInclude Include="game_info\titan_info_t.h" />
     <ClInclude Include="program\attack_details.h" />
     <ClInclude Include="program\import_data.h" />
     <ClInclude Include="program\player_info.h" />

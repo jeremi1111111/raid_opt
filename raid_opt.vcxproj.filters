@@ -123,21 +123,27 @@
     <ClCompile Include="sim_components\cards\afflictions\acid_drench.cpp">
       <Filter>Pliki źródłowe\sim_components\cards\afflictions</Filter>
     </ClCompile>
+    <ClCompile Include="game_info\titan_info_t.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="game_info\card_info_t.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game_info\area_info.h">
+    <ClInclude Include="game_info\area_info_t.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
-    <ClInclude Include="game_info\card_info.h">
+    <ClInclude Include="game_info\card_info_t.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
     <ClInclude Include="game_info\enumerables.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
-    <ClInclude Include="game_info\player_card_info.h">
+    <ClInclude Include="game_info\player_card_t.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
-    <ClInclude Include="game_info\titan_info.h">
+    <ClInclude Include="game_info\titan_info_t.h">
       <Filter>Pliki nagłówkowe\game_info</Filter>
     </ClInclude>
     <ClInclude Include="sim_components\sim_card.h">

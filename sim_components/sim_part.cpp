@@ -17,6 +17,12 @@ sim_part::sim_part(sim_titan* titan, part_name name, double hp, double ap)
 	//this->deck_stacks = new std::vector<int>[3];
 }
 
+sim_part::~sim_part()
+{
+	for (sim_stack* stack : deck_stacks)
+		delete stack;
+}
+
 bool sim_part::is_afflicted()
 {
 	for (sim_stack* st : deck_stacks)
@@ -61,6 +67,7 @@ void sim_part::invalidate_afflictions()
 	for (sim_stack* st : deck_stacks)
 		if (st->get_category() == card_category::affliction)
 			st->set_stacks(0);
+			//st->remove_stacks(1000);
 }
 
 void sim_part::create_stacks(std::vector<sim_card*> sim_cards)

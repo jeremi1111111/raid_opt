@@ -21,7 +21,7 @@ affliction::affliction(card_name name, sim_deck* deck, int deck_index)
 	: sim_card(name, deck, deck_index)
 {
 	category = card_category::affliction;
-	base_dmg = card_data->bonus_amount_a[level];
+	base_dmg = card_data->get_bonus_amount('a', level);
 }
 
 double affliction::calculate_damage(sim_part* part, int tap, double modifier)

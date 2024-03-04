@@ -1,5 +1,4 @@
 #pragma once
-//#include <unordered_map>
 #include "../support.h"
 
 class totem_of_power : public support
@@ -18,10 +17,12 @@ class totem_of_power : public support
 	static std::uniform_int_distribution<int> hitbox_delay_roller;
 	// past this value, delay doesn't need to be calculated
 	static const int delay_threshold;
+	int calculate_delay(int tap);
 public:
 	totem_of_power(sim_deck* deck = nullptr, int deck_index = 0);
+	//~totem_of_power();
 
-	bool roll(double modifier);
+	bool roll(double modifier, sim_part* part);
 	int calculate_expire_tap(sim_stack* stack, int tap);
 	double calculate_support(sim_part* part, sim_card* other);
 	int get_max_stacks();

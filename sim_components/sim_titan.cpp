@@ -3,22 +3,28 @@
 #include "sim_part.h"
 #include "sim_stack.h"
 #include "../program/simulation.h"
-#include "../game_info/titan_info.h"
+#include "../game_info/titan_info_t.h"
 
 sim_titan::sim_titan(enemy_id name, double base_hp)
 	: name(name)
 {
-	titan_info* ti = titans[static_cast<int>(name)];
+	titan_info_t* ti = titans[static_cast<int>(name)];
 	parts = {
-		new sim_part(this, part_name::head, base_hp * ti->body_head_mult, base_hp * ti->armor_head_mult),
-		new sim_part(this, part_name::torso, base_hp * ti->body_torso_mult, base_hp * ti->armor_torso_mult),
-		new sim_part(this, part_name::left_arm, base_hp * ti->body_arms_mult / 4, base_hp * ti->armor_arms_mult / 4),
-		new sim_part(this, part_name::left_hand, base_hp * ti->body_arms_mult / 4, base_hp * ti->armor_arms_mult / 4),
-		new sim_part(this, part_name::right_arm, base_hp * ti->body_arms_mult / 4, base_hp * ti->armor_arms_mult / 4),
-		new sim_part(this, part_name::right_hand, base_hp * ti->body_arms_mult / 4, base_hp * ti->armor_arms_mult / 4),
-		new sim_part(this, part_name::left_leg, base_hp * ti->body_legs_mult / 2, base_hp * ti->armor_legs_mult / 2),
-		new sim_part(this, part_name::right_leg, base_hp * ti->body_legs_mult / 2, base_hp * ti->armor_legs_mult / 2),
+		new sim_part(this, part_name::head, base_hp * ti->get_body_mult(part_name::head), base_hp * ti->get_armor_mult(part_name::head)),
+		new sim_part(this, part_name::torso, base_hp * ti->get_body_mult(part_name::torso), base_hp * ti->get_armor_mult(part_name::torso)),
+		new sim_part(this, part_name::left_arm, base_hp * ti->get_body_mult(part_name::left_arm) / 4, base_hp * ti->get_armor_mult(part_name::left_arm) / 4),
+		new sim_part(this, part_name::left_hand, base_hp * ti->get_body_mult(part_name::left_hand) / 4, base_hp * ti->get_armor_mult(part_name::left_hand) / 4),
+		new sim_part(this, part_name::right_arm, base_hp * ti->get_body_mult(part_name::right_arm) / 4, base_hp * ti->get_armor_mult(part_name::right_arm) / 4),
+		new sim_part(this, part_name::right_hand, base_hp * ti->get_body_mult(part_name::right_hand) / 4, base_hp * ti->get_armor_mult(part_name::right_hand) / 4),
+		new sim_part(this, part_name::left_leg, base_hp * ti->get_body_mult(part_name::left_leg) / 2, base_hp * ti->get_armor_mult(part_name::left_leg) / 2),
+		new sim_part(this, part_name::right_leg, base_hp * ti->get_body_mult(part_name::right_leg) / 2, base_hp * ti->get_armor_mult(part_name::right_leg) / 2),
 	};
+}
+
+sim_titan::~sim_titan()
+{
+	for (sim_part* part : parts)
+		delete part;
 }
 
 sim_part* sim_titan::get_part(part_name name)

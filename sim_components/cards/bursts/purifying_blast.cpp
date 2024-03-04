@@ -4,7 +4,7 @@
 purifying_blast::purifying_blast(sim_deck* deck, int deck_index)
 	: burst(card_name::purifying_blast, deck, deck_index)
 {
-	dmg_adt_per_affliction = card_data->bonus_amount_c;
+	dmg_adt_per_affliction = card_data->get_bonus_amount('c');
 }
 
 double purifying_blast::calculate_damage(sim_part* part, int tap, double modifier)

@@ -15,8 +15,9 @@ class sim_deck
 	double tap_dmg;
 public:
 	sim_deck(std::vector<int> card_indexes, sim_titan* titan, attack_details* attack);
+	~sim_deck();
 	std::vector<double> calculate_roll_modifiers();
-	std::vector<bool> roll_deck(std::vector<double> modifier);
+	std::vector<bool> roll_deck(std::vector<double> modifier, sim_part* part);
 	double calculate_support(sim_card* card, sim_part* part);
 	double simulate();
 	/*
